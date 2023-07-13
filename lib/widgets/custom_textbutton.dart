@@ -48,24 +48,31 @@ class CustomTextButton extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       TextButton(
-                          onPressed: () {
-                            Get.back();
-                          },
-                          child: const Text(
-                            'Cancel',
-                            style: kPopTextStyle,
-                          )),
-                      TextButton(
                           onPressed: () async {
-                            await currencyController.getCoinData(
-                                currencyController.selectedCurrency.value);
+                            //await currencyController.getCoinData(
+                            //currencyController.selectedCurrency.value);
                             currencyController.showCurrency.value =
                                 currencyController.selectedCurrency.value;
                             Get.back();
                           },
-                          child: const Text(
-                            'Confirm',
-                            style: kPopTextStyle,
+                          style: TextButton.styleFrom(
+                            tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                            padding: EdgeInsets.zero,
+                            minimumSize: Size.zero,
+                          ),
+                          child: Container(
+                            height: 30,
+                            width: 80,
+                            decoration: const BoxDecoration(
+                                color: Color(0xFF007BEC),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(15))),
+                            child: const Center(
+                              child: Text(
+                                'Confirm',
+                                style: kPopTextStyle,
+                              ),
+                            ),
                           )),
                     ],
                   ),
