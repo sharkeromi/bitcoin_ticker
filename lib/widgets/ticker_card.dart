@@ -31,7 +31,7 @@ class TickerCard extends StatelessWidget {
               width: 10,
             ),
             Obx(() => Text(
-                  '1 $crypto = ${currencyController.coinValues.value[crypto] ?? 'Loading..'} ${currencyController.selectedCurrency.value}',
+                  '1 $crypto = ${currencyController.coinValues.value[crypto] ?? 'Loading..'} ${currencyController.showCurrency.value}',
                   style: kCardTextStyle,
                 )),
           ],

@@ -6,6 +6,7 @@ import 'package:http/http.dart' as http;
 
 class CurrencyController extends GetxController {
   RxString selectedCurrency = RxString('');
+  RxString showCurrency = RxString('');
   List<String> currenciesList = [
     'AUD',
     'BRL',
@@ -32,7 +33,7 @@ class CurrencyController extends GetxController {
 
   List<String> cryptoList = ["BTC", "ETH", "LTC"];
 
-  List<Text> pickerItems = [];
+
 
   RxMap<String, String> coinValues = RxMap({});
 
@@ -47,7 +48,7 @@ class CurrencyController extends GetxController {
         double price = decodedData['rate'];
         cryptoPrices[crypto] = price.toStringAsFixed(0);
       } else {
-        print(response.statusCode);
+        print(response.body);
         throw 'Problem with the get request';
       }
     }

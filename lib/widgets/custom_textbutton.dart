@@ -1,3 +1,4 @@
+import 'package:bitcoin_ticker/constants/style.dart';
 import 'package:bitcoin_ticker/controller/currencyController.dart';
 
 import 'package:flutter/cupertino.dart';
@@ -19,10 +20,10 @@ class CustomTextButton extends StatelessWidget {
         onPressed: () {
           dialogBuilder(context);
         },
-        child: Obx(() => Text(
-              currencyController.selectedCurrency.value,
-              style: const TextStyle(fontSize: 20),
-            )));
+        child: const Text(
+          "Select",
+          style: TextStyle(fontSize: 20),
+        ));
   }
 
   Future<void> dialogBuilder(BuildContext context) {
@@ -30,13 +31,46 @@ class CustomTextButton extends StatelessWidget {
         context: context,
         builder: (BuildContext context) {
           return Dialog(
-            child: Container(
-              height: 200,
-              alignment: Alignment.center,
-              padding: const EdgeInsets.only(bottom: 30),
-              color: Colors.white,
-              child: Padding(
-                  padding: const EdgeInsets.all(16.0), child: iOSPicker()),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Container(
+                  height: 150,
+                  alignment: Alignment.center,
+                  //padding: const EdgeInsets.only(bottom: 30),
+                  //color: Colors.amber,
+                  child: Padding(
+                      padding: const EdgeInsets.all(16.0), child: iOSPicker()),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      TextButton(
+                          onPressed: () {
+                            Get.back();
+                          },
+                          child: const Text(
+                            'Cancel',
+                            style: kPopTextStyle,
+                          )),
+                      TextButton(
+                          onPressed: () async {
+                            await currencyController.getCoinData(
+                                currencyController.selectedCurrency.value);
+                            currencyController.showCurrency.value =
+                                currencyController.selectedCurrency.value;
+                            Get.back();
+                          },
+                          child: const Text(
+                            'Confirm',
+                            style: kPopTextStyle,
+                          )),
+                    ],
+                  ),
+                )
+              ],
             ),
           );
         });
@@ -54,8 +88,7 @@ class CustomTextButton extends StatelessWidget {
       onSelectedItemChanged: (selectedIndex) async {
         currencyController.selectedCurrency.value =
             currencyController.currenciesList[selectedIndex];
-        await currencyController
-            .getCoinData(currencyController.selectedCurrency.value);
+        // await currencyController.getCoinData(currencyController.selectedCurrency.value);
       },
       children: pickerItems,
     );
