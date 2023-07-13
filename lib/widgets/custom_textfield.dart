@@ -1,10 +1,10 @@
 import 'package:bitcoin_ticker/constants/color.dart';
 import 'package:bitcoin_ticker/constants/style.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+
 
 class CustomTextField extends StatelessWidget {
-  CustomTextField({
+  const CustomTextField({
     super.key,
   });
 

@@ -1,15 +1,20 @@
-import 'package:bitcoin_ticker/constants/color.dart';
 import 'package:bitcoin_ticker/constants/style.dart';
+import 'package:bitcoin_ticker/controller/currencyController.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'reusable_card.dart';
 
 class TickerCard extends StatelessWidget {
   final String icon;
-
   final String crypto;
+  CurrencyController currencyController = Get.find<CurrencyController>();
 
-  TickerCard({super.key, required this.icon, required this.crypto});
+  TickerCard({
+    super.key,
+    required this.icon,
+    required this.crypto,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -25,10 +30,10 @@ class TickerCard extends StatelessWidget {
             const SizedBox(
               width: 10,
             ),
-            Text(
-              '1 $crypto = ',
-              style: kCardTextStyle,
-            ),
+            Obx(() => Text(
+                  '1 $crypto = ${currencyController.coinValues.value[crypto] ?? 'Loading..'} ${currencyController.selectedCurrency.value}',
+                  style: kCardTextStyle,
+                )),
           ],
         ),
       ),

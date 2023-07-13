@@ -24,7 +24,7 @@ class CustomAppBar extends StatelessWidget {
       actions: [
         Row(
           children: [
-            Padding(padding: EdgeInsets.all(10.0), child: CustomTextButton()),
+            Padding(padding: const EdgeInsets.all(10.0), child: CustomTextButton()),
           ],
         )
       ],

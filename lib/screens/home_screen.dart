@@ -25,7 +25,7 @@ class HomeScreen extends StatelessWidget {
               Expanded(
                 child: TickerCard(
                   icon: btc,
-                  crypto: 'Bitcoin',
+                  crypto: 'BTC',
                 ),
               ),
             ],
@@ -35,7 +35,7 @@ class HomeScreen extends StatelessWidget {
               Expanded(
                 child: TickerCard(
                   icon: eth,
-                  crypto: 'Ethereum',
+                  crypto: 'ETH',
                 ),
               ),
             ],
@@ -45,7 +45,7 @@ class HomeScreen extends StatelessWidget {
               Expanded(
                 child: TickerCard(
                   icon: ltc,
-                  crypto: 'LiteCoin',
+                  crypto: 'LTC',
                 ),
               ),
             ],

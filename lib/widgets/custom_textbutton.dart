@@ -19,10 +19,10 @@ class CustomTextButton extends StatelessWidget {
         onPressed: () {
           dialogBuilder(context);
         },
-        child: Text(
-          'USD',
-          style: TextStyle(fontSize: 20),
-        ));
+        child: Obx(() => Text(
+              currencyController.selectedCurrency.value,
+              style: const TextStyle(fontSize: 20),
+            )));
   }
 
   Future<void> dialogBuilder(BuildContext context) {
@@ -35,12 +35,8 @@ class CustomTextButton extends StatelessWidget {
               alignment: Alignment.center,
               padding: const EdgeInsets.only(bottom: 30),
               color: Colors.white,
-              child: Column(
-                children: [
-                  Padding(
-                      padding: const EdgeInsets.all(16.0), child: iOSPicker()),
-                ],
-              ),
+              child: Padding(
+                  padding: const EdgeInsets.all(16.0), child: iOSPicker()),
             ),
           );
         });
@@ -54,11 +50,12 @@ class CustomTextButton extends StatelessWidget {
     }
 
     return CupertinoPicker(
-      //backgroundColor: Colors.lightBlue,
       itemExtent: 32.0,
-      onSelectedItemChanged: (selectedIndex) {
+      onSelectedItemChanged: (selectedIndex) async {
         currencyController.selectedCurrency.value =
             currencyController.currenciesList[selectedIndex];
+        await currencyController
+            .getCoinData(currencyController.selectedCurrency.value);
       },
       children: pickerItems,
     );

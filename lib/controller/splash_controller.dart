@@ -12,6 +12,6 @@ class SplashScreenController extends GetxController {
 
   navigateToHome() async {
     await Future.delayed(const Duration(seconds: 5), () {});
-    Get.offAll(() => HomeScreen());
+    Get.offAll(() => const HomeScreen());
   }
 }
